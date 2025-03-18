@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Up Experiences - Viva o seu momento up</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container nav-container">
+            <a href="#" class="logo">UP Experiences</a>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="#destinations" class="nav-link">Destinos</a></li>
+                <li class="nav-item"><a href="#services" class="nav-link">Serviços</a></li>
+                <li class="nav-item"><a href="#about" class="nav-link">Sobre</a></li>
+                <li class="nav-item"><a href="#team" class="nav-link">Equipe</a></li>
+                <li class="nav-item"><a href="#contact" class="nav-link">Contato</a></li>
+            </ul>
+            <button class="hamburger" id="hamburger-btn" aria-label="Menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+        </div>
+    </header>
+    
+    <!-- Side Menu (Mobile) -->
+    <div class="side-menu" id="side-menu">
+        <div class="side-menu-header">
+            <a href="#" class="logo">UP Experiences</a>
+            <button class="side-menu-close" id="side-menu-close">&times;</button>
+        </div>
+        <ul class="side-menu-nav">
+            <li class="side-menu-item"><a href="#destinations" class="side-menu-link">Destinos</a></li>
+            <li class="side-menu-item"><a href="#services" class="side-menu-link">Serviços</a></li>
+            <li class="side-menu-item"><a href="#about" class="side-menu-link">Sobre</a></li>
+            <li class="side-menu-item"><a href="#team" class="side-menu-link">Equipe</a></li>
+            <li class="side-menu-item"><a href="#contact" class="side-menu-link">Contato</a></li>
+        </ul>
+    </div>
+    
+    <!-- Overlay for Side Menu -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <h1 class="hero-title">Viva o seu momento up</h1>
+            <h2 class="hero-subtitle">Rio de Janeiro · Doha · Abu Dhabi · Dubai</h2>
+            <p>Experimente viagens exclusivas e personalizadas com a Up Experiences</p>
+            <div class="hero-cta">
+                <a href="#contact" class="btn">Planejar Minha Viagem</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Destinations Section -->
+    <section id="destinations" class="destinations">
+        <div class="container">
+            <h2 class="section-title">Nossos Destinos</h2>
+            <div class="destinations-grid">
+                <div class="destination-card">
+                    <img src="images/pao_de_acucar.jpg" alt="Rio de Janeiro" class="card-img">
+                    <div class="card-content">
+                        <h3 class="card-title">Rio de Janeiro</h3>
+                        <p>Conheça as belezas da Cidade Maravilhosa com nossos serviços exclusivos.</p>
+                        <a href="#" class="btn">Explorar</a>
+                    </div>
+                </div>
+                <div class="destination-card">
+                    <img src="images/doha.jpg" alt="Doha" class="card-img">
+                    <div class="card-content">
+                        <h3 class="card-title">Doha</h3>
+                        <p>Descubra a modernidade e tradição da capital do Qatar durante seu stopover.</p>
+                        <a href="#" class="btn">Explorar</a>
+                    </div>
+                </div>
+                <div class="destination-card">
+                    <img src="images/abu_dahbi.jpg" alt="Abu Dhabi" class="card-img">
+                    <div class="card-content">
+                        <h3 class="card-title">Abu Dhabi</h3>
+                        <p>Visite a impressionante capital dos Emirados Árabes Unidos.</p>
+                        <a href="#" class="btn">Explorar</a>
+                    </div>
+                </div>
+                <div class="destination-card">
+                    <img src="images/dubai.jpg" alt="Dubai" class="card-img">
+                    <div class="card-content">
+                        <h3 class="card-title">Dubai</h3>
+                        <p>Conheça a cidade dos superlativos com nossos tours personalizados.</p>
+                        <a href="#" class="btn">Explorar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2 class="section-title">Nossos Serviços</h2>
+            <div class="service-list">
+                <div class="service-item">
+                    <div class="service-icon">✈️</div>
+                    <h3 class="service-title">Tickets Aéreos</h3>
+                    <p>Passagens aéreas por pontuação para todos os destinos do mundo. Classes Econômica, Business e Primeira Classe.</p>
+                    <button class="service-btn" onclick="openModal('tickets-modal')">Saiba Mais</button>
+                </div>
+                <div class="service-item">
+                    <div class="service-icon">🌍</div>
+                    <h3 class="service-title">Stopover</h3>
+                    <p>Aproveite ao máximo sua parada estratégica com nossos serviços personalizados em Doha, Dubai e Abu Dhabi.</p>
+                    <button class="service-btn" onclick="openModal('stopover-modal')">Saiba Mais</button>
+                </div>
+                <div class="service-item">
+                    <div class="service-icon">🧭</div>
+                    <h3 class="service-title">Tours</h3>
+                    <p>Tours de 6, 8 e 10 horas com opção de walking tour ou carros com motoristas e vans executivas.</p>
+                    <button class="service-btn" onclick="openModal('tours-modal')">Saiba Mais</button>
+                </div>
+                <div class="service-item">
+                    <div class="service-icon">🏨</div>
+                    <h3 class="service-title">Acomodações</h3>
+                    <p>Os melhores hotéis e casas de temporada nas nossas cidades com segurança e atenção aos detalhes.</p>
+                    <button class="service-btn" onclick="openModal('acomodacoes-modal')">Saiba Mais</button>
+                </div>
+                <div class="service-item">
+                    <div class="service-icon">🌐</div>
+                    <h3 class="service-title">Expatriados</h3>
+                    <p>Serviços completos para expatriados no Rio de Janeiro, facilitando sua transição e adaptação.</p>
+                    <button class="service-btn" onclick="openModal('expatriados-modal')">Saiba Mais</button>
+                </div>
+                <div class="service-item">
+                    <div class="service-icon">🚢</div>
+                    <h3 class="service-title">Locação de Veículos Aquáticos</h3>
+                    <p>Aluguel de barcos e iates para experiências exclusivas nas águas do Rio e Doha.</p>
+                    <button class="service-btn" onclick="openModal('veiculos-modal')">Saiba Mais</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section / Timeline -->
+    <section id="about" class="timeline">
+        <div class="container">
+            <h2 class="section-title">Nossa História</h2>
+            <div class="timeline-container">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2016</div>
+                        <p>Fundada durante as Olimpíadas Rio 2016, quando recebeu delegação de futebol de Meghalaya, da Índia. Realizou o treinamento da equipe de receptivo do Boulevard Olímpico.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2020</div>
+                        <p>Expande seus serviços turísticos para a cidade de Doha no Qatar, atendendo brasileiros em trânsito entre o Brasil e a Austrália.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2022</div>
+                        <p>Intensifica suas atividades de receptivo, culminando com a Copa do Qatar, atuando como referência para o receptivo em Doha.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2024</div>
+                        <p>Inclui Dubai e Abu Dhabi em seu portfólio de serviços, conquistando os brasileiros e sendo referência em venda de passagem aérea por pontuação e experiências de city tour.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2025</div>
+                        <p>Formata a prestação de serviços em Doha voltada para estudantes de intercâmbio na Australia e intensifica o atendimento a pais e mães que visitam seus filhos na Oceania.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="team">
+        <div class="container">
+            <h2 class="section-title">Nossa Equipe</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <img src="/api/placeholder/200/200" alt="Flavia Prista" class="member-img">
+                    <h3 class="member-name">Flavia Prista</h3>
+                    <p class="member-title">CEO</p>
+                    <p>Formada em Pedagogia e Turismo com MBA em Gestão de Negócios. Experiência na Escola Americana do Rio de Janeiro e Copacabana Palace.</p>
+                </div>
+                <div class="team-member">
+                    <img src="/api/placeholder/200/200" alt="Daniela Prista" class="member-img">
+                    <h3 class="member-name">Daniela Prista</h3>
+                    <p class="member-title">Diretora de Comunicação</p>
+                    <p>Designer e professora de Educação Infantil, especialista em Marketing Digital. Gerenciou operações de receptivo durante a Copa do Qatar em 2022.</p>
+                </div>
+                <div class="team-member">
+                    <img src="/api/placeholder/200/200" alt="Claudia Patrícia Duarte" class="member-img">
+                    <h3 class="member-name">Claudia Patrícia Duarte</h3>
+                    <p class="member-title">Diretora de Operações</p>
+                    <p>Formada em Turismo e Hotelaria, com passagens pelo Copacabana Palace Hotel e curso de Turismo da Estácio de Sá.</p>
+                </div>
+                <div class="team-member">
+                    <img src="/api/placeholder/200/200" alt="Andrea Silva" class="member-img">
+                    <h3 class="member-name">Andrea Silva</h3>
+                    <p class="member-title">Especialista em Marketing Digital</p>
+                    <p>Formada em Turismo, especialista em estratégias e campanhas digitais. Mora na região litorânea do Rio de Janeiro.</p>
+                </div>
+                <div class="team-member">
+                    <img src="/api/placeholder/200/200" alt="Renato Von Sydow" class="member-img">
+                    <h3 class="member-name">Renato Von Sydow</h3>
+                    <p class="member-title">Diretor de Operações, Imagem e Fotografia</p>
+                    <p>Formado em Desenho Industrial e Fotografia. Especialista em Fine Art e sessões fotográficas privativas.</p>
+                </div>
+                <div class="team-member">
+                    <img src="/api/placeholder/200/200" alt="Lucia Zwinpher" class="member-img">
+                    <h3 class="member-name">Lucia Zwinpher</h3>
+                    <p class="member-title">Diretora Administrativa</p>
+                    <p>Empresária, graduada em psicologia e pós-graduada em Marketing. Gerencia o Departamento Financeiro.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Student Care Section -->
+    <section class="services" style="background-color: var(--bg-light);">
+        <div class="container">
+            <h2 class="section-title">Cuidado ao Estudante</h2>
+            <div style="text-align: center; max-width: 800px; margin: 0 auto;">
+                <p>Durante o ano, levamos a Doha, 4 grupos de 12 estudantes de passagem para estudar na Australia.</p>
+                <p>O Stopover para estudantes consiste em 2 dias intensos com visitação à Biblioteca Nacional do Qatar e a Cidade Universitária, além de lugares incríveis como o Souq Waquif, Katara Cultural Village, Old Doha Port e o moderno Msheireb Downtown.</p>
+                <p>Entre em contato conosco e descubra as vantagens de viajar em passeios privativos ou em grupo de estudantes. São apenas 4 grupos de 6 alunos por ano.</p>
+                <a href="#contact" class="btn">Reserve já o seu lugar</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Entre em Contato</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Informações de Contato</h3>
+                    <div class="contact-method">
+                        <div class="contact-icon">📱</div>
+                        <p>+5521 98783 8986 (Brasil)</p>
+                    </div>
+                    <div class="contact-method">
+                        <div class="contact-icon">📱</div>
+                        <p>+974 5545 3276 (Qatar)</p>
+                    </div>
+                    <div class="contact-method">
+                        <div class="contact-icon">🌐</div>
+                        <p>www.upexperiences.com.br</p>
+                    </div>
+                    <div class="social-links">
+                        <a href="#" class="social-link">in</a>
+                        <a href="#" class="social-link">ig</a>
+                        <a href="#" class="social-link">fb</a>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <h3>Envie uma Mensagem</h3>
+                    <form>
+                        <div class="form-group">
+                            <label for="name" class="form-label">Nome</label>
+                            <input type="text" id="name" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" id="email" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="destination" class="form-label">Destino de Interesse</label>
+                            <select id="destination" class="form-input">
+                                <option value="">Selecione...</option>
+                                <option value="rio">Rio de Janeiro</option>
+                                <option value="doha">Doha</option>
+                                <option value="abu-dhabi">Abu Dhabi</option>
+                                <option value="dubai">Dubai</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message" class="form-label">Mensagem</label>
+                            <textarea id="message" class="form-textarea" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Enviar Mensagem</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modals -->
+    <!-- Tickets Aéreos Modal -->
+    <div id="tickets-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('tickets-modal')">&times;</span>
+            <h2 class="modal-title">Tickets Aéreos</h2>
+            <div class="modal-body">
+                <p>Passagens aéreas por pontuação para todos os destinos do mundo. Classes Econômica, Business e Primeira Classe, entre em contato com nossos especialistas e conheça as vantagens sobre as passagens por pontuação.</p>
+                <p>Na Up Experiences, utilizamos sistemas de pontuação de programas de fidelidade para oferecer as melhores tarifas e condições para suas viagens internacionais. Nossa equipe especializada consegue maximizar o valor dos seus pontos, oferecendo passagens em todas as classes.</p>
+                <p>Benefícios do nosso serviço de tickets aéreos:</p>
+                <ul>
+                    <li>Economia significativa em passagens internacionais</li>
+                    <li>Acesso a tarifas premium com menor custo</li>
+                    <li>Consultoria personalizada sobre programas de fidelidade</li>
+                    <li>Emissão de passagens para qualquer destino global</li>
+                    <li>Suporte completo antes, durante e após a emissão</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stopover Modal -->
+    <div id="stopover-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('stopover-modal')">&times;</span>
+            <h2 class="modal-title">Stopover</h2>
+            <div class="modal-body">
+                <p>Doha, Dubai e Abu Dhabi, são destinos incríveis, localizados geograficamente entre o Brasil e a Austrália. São cidades vibrantes, modernas e que preservam valores culturais únicos que encantam a todos que as visitam.</p>
+                <p>A Up Experiences é especialista nesses destinos e fará do seu stopover uma experiência memorável, combinando os melhores passeios com a melhor logística possível, fazendo valer a pena o seu período curto de stopover.</p>
+                <p>Vem passear conosco e fazer do seu stopover uma paradinha estratégica para curtir cada minuto e descansar o suficiente para recarregar as baterias até o seu destino final.</p>
+                <p>Nossos serviços de stopover incluem:</p>
+                <ul>
+                    <li>Planejamento personalizado de roteiros</li>
+                    <li>Transfers exclusivos aeroporto-hotel</li>
+                    <li>Tours guiados aos principais pontos turísticos</li>
+                    <li>Hospedagem selecionada conforme seu perfil</li>
+                    <li>Assistência 24 horas durante toda sua estadia</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tours Modal -->
+    <div id="tours-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('tours-modal')">&times;</span>
+            <h2 class="modal-title">Tours</h2>
+            <div class="modal-body">
+                <p>Em nossos destinos, trabalhamos com tours de 6, 8 e 10 horas. Durante esse período você escolhe o que quer visitar e nós indicamos a melhor forma, quer seja na opção de walking tour, ou em carros com motoristas e vans executivas.</p>
+                <p>Tudo começa com um bate papo online, quando vamos conhecer mais sobre você e elaborar um programa sob medida que atenda suas preferências, o seu bolso e suas expectativas.</p>
+                <p>Otimizamos seu tempo, com a melhor logística custo benefício, para você conhecer esses destinos exatamente como deseja. Quer seja uma experiência de luxo, quer seja uma experiência econômica.</p>
+                <p>Nossos tours são oferecidos em:</p>
+                <ul>
+                    <li><strong>Rio de Janeiro:</strong> Cristo Redentor, Pão de Açúcar, praias, Floresta da Tijuca e muito mais</li>
+                    <li><strong>Doha:</strong> Souq Waqif, Museu de Arte Islâmica, The Pearl, Katara Cultural Village</li>
+                    <li><strong>Dubai:</strong> Burj Khalifa, Dubai Mall, Palm Jumeirah, Dubai Marina, safari no deserto</li>
+                    <li><strong>Abu Dhabi:</strong> Grande Mesquita Sheikh Zayed, Louvre Abu Dhabi, Ferrari World, Emirates Palace</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Acomodações Modal -->
+    <div id="acomodacoes-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('acomodacoes-modal')">&times;</span>
+            <h2 class="modal-title">Acomodações</h2>
+            <div class="modal-body">
+                <p>Os melhores hotéis da cidade do Rio de Janeiro, Doha, Dubai e Abu Dhabi. Apartamentos e casas de temporada em Buzios, Angra e Rio de Janeiro.</p>
+                <p>Com anos de experiência no mercado de hospitalidade e parcerias exclusivas, oferecemos opções que aliam o máximo conforto com localização privilegiada em todas as nossas cidades de atuação.</p>
+                <p>Nosso serviço de acomodações inclui:</p>
+                <ul>
+                    <li>Seleção de hotéis 4 e 5 estrelas com tarifas especiais</li>
+                    <li>Casas e apartamentos de alto padrão para temporada</li>
+                    <li>Propriedades em localizações exclusivas e seguras</li>
+                    <li>Atendimento personalizado às necessidades do hóspede</li>
+                    <li>Serviços adicionais como transfer, concierge e limpeza</li>
+                </ul>
+                <p>Trabalhamos com propriedades selecionadas que garantem segurança, exclusividade e atenção aos detalhes para que sua estadia seja perfeita.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Expatriados Modal -->
+    <div id="expatriados-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('expatriados-modal')">&times;</span>
+            <h2 class="modal-title">Expatriados</h2>
+            <div class="modal-body">
+                <p>Mudar de país com a família é um desafio que exige planejamento, suporte e uma rede de serviços confiável. A Up Ex Patriates é especializada em proporcionar uma transição tranquila e personalizada para expatriados no Rio de Janeiro, oferecendo soluções completas que vão além da hospedagem.</p>
+                <p>Com um portfólio que inclui locação de casas e apartamentos para temporada, assistência na escolha de escolas, seleção e treinamento de colaboradores domésticos, além de aluguel de barcos para lazer, garantimos uma experiência segura e confortável.</p>
+                <p>Uma agência voltada para expatriados precisa entender as necessidades culturais e operacionais de cada família, oferecer atendimento bilíngue e ágil, ter uma rede de fornecedores qualificados e, acima de tudo, proporcionar segurança e praticidade em cada etapa da mudança. Na Up combinamos expertise e hospitalidade para que nossos clientes se sintam em casa, desde o primeiro dia no Brasil.</p>
+                <p>Nossos serviços para expatriados incluem:</p>
+                <ul>
+                    <li>Busca e locação de imóveis residenciais</li>
+                    <li>Orientação sobre escolas internacionais</li>
+                    <li>Recrutamento de staff doméstico</li>
+                    <li>Assessoria para documentação legal</li>
+                    <li>Serviços de adaptação cultural</li>
+                    <li>Suporte contínuo durante toda a estadia</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Veículos Aquáticos Modal -->
+    <div id="veiculos-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('veiculos-modal')">&times;</span>
+            <h2 class="modal-title">Locação de Veículos Aquáticos</h2>
+            <div class="modal-body">
+                <p>A Up oferece um serviço exclusivo de locação de barcos no Rio de Janeiro, ideal para quem busca lazer, sofisticação e experiências inesquecíveis no mar. Com uma frota que vai de lanchas modernas a iates luxuosos, garantimos conforto, segurança e um atendimento personalizado.</p>
+                <p>Seja para relaxar em Doha, Dubai ou Abu Dhabi ou explorar a Baía de Guanabara, visitar ilhas paradisíacas ou realizar eventos privados a bordo, cuidamos de todos os detalhes, incluindo tripulação qualificada, catering e roteiros sob medida.</p>
+                <p>Com a Up, cada passeio se torna uma experiência única, combinando exclusividade, praticidade e o melhor do lifestyle carioca.</p>
+                <p>Nossa frota inclui opções para diversas necessidades:</p>
+                <ul>
+                    <li>Lanchas de 26 a 50 pés para passeios rápidos</li>
+                    <li>Iates de luxo para eventos e celebrações</li>
+                    <li>Embarcações com capacidade de 2 a 30 pessoas</li>
+                    <li>Opções com ou sem tripulação</li>
+                    <li>Serviços adicionais como catering, bebidas e decoração</li>
+                </ul>
+                <p>Todos os nossos barcos passam por rigorosa manutenção e seguem todos os protocolos de segurança.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <a href="#" class="logo">UP EXPERIENCES</a>
+            <ul class="footer-links">
+                <li><a href="#destinations" class="footer-link">Destinos</a></li>
+                <li><a href="#services" class="footer-link">Serviços</a></li>
+                <li><a href="#about" class="footer-link">Sobre</a></li>
+                <li><a href="#team" class="footer-link">Equipe</a></li>
+                <li><a href="#contact" class="footer-link">Contato</a></li>
+            </ul>
+            <p>@up.experiences</p>
+            <p class="copyright">&copy; 2025 Up Experiences. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+    
+    <!-- JavaScript para os modais e menu mobile -->
+    <script src="script.js"></script>
+</body>
+</html>
