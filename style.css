@@ -312,16 +312,19 @@ header {
     background-color: var(--light);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
     transition: transform 0.3s ease;
+    min-height: 320px; /* Altura mínima para manter consistência */
 }
+
+
 
 .service-item:hover {
     transform: translateY(-5px);
 }
 
 .service-icon {
-    width: 60px;
-    height: 60px;
-    margin-bottom: 20px;
+    width: 100px;
+    height: 100px;
+    margin-bottom: 25px;
     object-fit: contain;
     display: block;
     margin-left: auto;
