@@ -38,14 +38,8 @@ try {
     Write-Host "Iniciando a geração de contexto para IA..."
 
     # Lista todos os arquivos com as extensões definidas
-    $arquivos = @()
-    foreach ($ext in $extensoes) {
-        $directories = Get-ChildItem -Path $projetoPasta -Directory -Recurse -ErrorAction SilentlyContinue |
-                       Where-Object { -not $_.FullName.Contains("node_modules") -and -not $_.FullName.Contains(".git") }
-        foreach ($dir in $directories) {
-            $arquivos += Get-ChildItem -Path $dir.FullName -Filter $ext -ErrorAction SilentlyContinue
-        }
-    }
+    $arquivos = Get-ChildItem -Path $projetoPasta -Recurse -Include $extensoes -ErrorAction SilentlyContinue |
+                Where-Object { $_.FullName -notmatch "\\node_modules\\" -and $_.FullName -notmatch "\\\.git\\" }
 
     $htmlCount = ($arquivos | Where-Object { $_.Extension -eq ".html" }).Count
     $cssCount = ($arquivos | Where-Object { $_.Extension -eq ".css" }).Count
@@ -67,40 +61,85 @@ Total de arquivos:
 - JavaScript: $jsCount arquivos
 
 ## Estrutura do Projeto
-
-$projetoPasta
-$($arquivos | ForEach-Object { $_.FullName.Replace($projetoPasta, "").TrimStart("") } | Out-String)
-
+(arquivos | ForEach-Object { 
+.
+F
+u
+l
+l
+N
+a
+m
+e
+.
+R
+e
+p
+l
+a
+c
+e
+(
+.
+​
+ FullName.Replace(projetoPasta, "").TrimStart('') } | Out-String)
 
 ## Arquivos Principais
+
 "@
 
     # Processa cada arquivo e adiciona ao markdown
     foreach ($arquivo in $arquivos) {
         $fileInfo = Get-FileStructure -filePath $arquivo.FullName
         if ($null -eq $fileInfo) { continue }
-        
-        $fileCodeBlock = "```" + $fileInfo.Type + "`n" + $fileInfo.Content + "`n```"
-        
-        $markdownContent += @"
-### $($arquivo.Name)
 
-- **Caminho:** $($fileInfo.Path)
-- **Tipo:** $($fileInfo.Type)
-- **Tamanho:** $([math]::Round($fileInfo.Size / 1024, 2)) KB
-- **Última Modificação:** $($fileInfo.LastModified)
-
-#### Código-fonte:
-$fileCodeBlock
+        $fileCodeBlock = @"
+```$($fileInfo.Type)
+$($fileInfo.Content)
 "@
-    }
+(arquivo.Name)
+Caminho: 
+(
+(fileInfo.Path)
 
-    try {
-        $markdownContent | Out-File -FilePath $arquivoSaida -Encoding UTF8 -ErrorAction Stop
-        Write-Host "Contexto gerado com sucesso! Arquivo salvo em: $arquivoSaida"
-    } catch {
-        Write-Error "Erro ao salvar o arquivo de saída: $_"
-    }
-} catch {
-    Write-Error "Erro ao gerar contexto: $_"
+Tipo: 
+(
+(fileInfo.Type)
+
+Tamanho: 
+(
+[
+m
+a
+t
+h
+]
+:
+:
+R
+o
+u
+n
+d
+(
+([math]::Round(fileInfo.Size / 1024, 2)) KB
+
+Última Modificação: 
+(
+(fileInfo.LastModified)
+
+Código-fonte:
+$fileCodeBlock
+
+"@
 }
+try {
+    $markdownContent | Out-File -FilePath $arquivoSaida -Encoding UTF8 -ErrorAction Stop
+    Write-Host "Contexto gerado com sucesso! Arquivo salvo em: $arquivoSaida"
+} catch {
+    Write-Error "Erro ao salvar o arquivo de saída: $_"
+}
+} catch {
+Write-Error "Erro ao gerar contexto: $_"
+}
+
