@@ -69,6 +69,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 0 10px;
 }
 
 .logo {
@@ -107,7 +108,8 @@ header {
     cursor: pointer;
     background: none;
     border: none;
-    padding: 10px;
+    padding: 5px;
+    margin-left: 10px;
     z-index: 1100;
 }
 
@@ -218,16 +220,69 @@ header {
 /* Hero Section */
 .hero {
     height: 100vh;
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('images/beach.jpg') center/cover no-repeat;
     display: flex;
     align-items: center;
     color: var(--light);
     text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+}
+
+.image-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('images/beach.jpg') center/cover no-repeat;
+    transition: opacity 1s ease;
+}
+
+.video-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1.5s ease;
+    z-index: 1; /* Prioridade sobre a imagem */
+}
+
+.video-container.loaded {
+    opacity: 1;
+}
+
+.hero video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: -1;
 }
 
 .hero-content {
     max-width: 800px;
     margin: 0 auto;
+    position: relative;
+    z-index: 1;
 }
 
 .hero-title {
@@ -260,8 +315,8 @@ header {
 
 .destinations-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
 }
 
 .destination-card {
@@ -661,5 +716,59 @@ footer {
     
     .timeline-item:nth-child(even)::after {
         left: 31px;
+    }
+    
+    /* Correções para mobile */
+    .destination-card {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+    
+    .card-img {
+        height: 180px;
+    }
+    
+    .card-content {
+        padding: 15px;
+    }
+    
+    .card-title {
+        font-size: 28px;
+    }
+}
+
+/* Ajustes adicionais para telas muito pequenas */
+@media (max-width: 480px) {
+    .container {
+        padding: 0 15px;
+    }
+    
+    .destinations-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .service-list {
+        grid-template-columns: 1fr;
+    }
+    
+    .team-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .contact-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .hero-title {
+        font-size: 32px;
+    }
+    
+    .section-title {
+        font-size: 24px;
+        margin-bottom: 30px;
+    }
+    
+    .card-title {
+        font-size: 24px;
     }
 }

@@ -47,16 +47,32 @@
     <div class="overlay" id="overlay"></div>
 
     <!-- Hero Section -->
-    <section class="hero">
-        <div class="container hero-content">
-            <h1 class="hero-title">Viva o seu momento up</h1>
-            <h2 class="hero-subtitle">Rio de Janeiro · Doha · Abu Dhabi · Dubai</h2>
-            <p>Experimente viagens exclusivas e personalizadas com a Up Experiences</p>
-            <div class="hero-cta">
-                <a href="#contact" class="btn">Planejar Minha Viagem</a>
-            </div>
+   
+ <!-- Hero Section -->
+ <section class="hero">
+    <!-- Vídeo de fundo -->
+    <div class="hero-background">
+        <!-- Camada de vídeo (inicialmente oculta) -->
+        <div class="video-container">
+            <video id="hero-video" muted loop autoplay playsinline>
+                <source src="images/capa_site2_upexperience2025.mp4" type="video/mp4">
+                <!-- Adicione outros formatos de vídeo se necessário -->
+            </video>
         </div>
-    </section>
+        <!-- Imagem de fallback (mostrada enquanto o vídeo carrega) -->
+        <div class="image-container"></div>
+    </div>
+    <!-- Overlay escuro para melhorar a legibilidade do texto -->
+    <div class="hero-overlay"></div>
+    <div class="container hero-content">
+        <h1 class="hero-title">Viva o seu momento up</h1>
+        <h2 class="hero-subtitle">Rio de Janeiro · Doha · Abu Dhabi · Dubai</h2>
+        <p>Experimente viagens exclusivas e personalizadas com a Up Experiences</p>
+        <div class="hero-cta">
+            <a href="#contact" class="btn">Planejar Minha Viagem</a>
+        </div>
+    </div>
+</section>
 
     <!-- Destinations Section -->
     <section id="destinations" class="destinations">
