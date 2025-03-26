@@ -6,6 +6,7 @@
     --light: #fff;
     --text: #333;
     --bg-light: #f8f8f8;
+    --gray:#7e7e7e;
 }
 
 * {
@@ -39,7 +40,7 @@ p {
 .btn {
     display: inline-block;
     padding: 12px 30px;
-    background-color: var(--accent);
+    background-color: var(--gray);
     color: var(--light);
     text-decoration: none;
     border-radius: 4px;
@@ -337,7 +338,7 @@ header {
 }
 
 .service-btn {
-    background-color: var(--accent);
+    background-color: var(--gray);
     color: var(--light);
     border: none;
     padding: 8px 15px;
@@ -499,6 +500,7 @@ header {
     border-radius: 50%;
     object-fit: cover;
     margin-bottom: 20px;
+    
 }
 
 .member-name {
