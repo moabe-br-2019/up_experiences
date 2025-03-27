@@ -19,6 +19,7 @@
 body {
     color: var(--text);
     line-height: 1.6;
+    overflow-x: hidden; /* Previne rolagem horizontal */
 }
 
 h1, h2, h3, h4 {
@@ -64,33 +65,36 @@ p {
     background-color: var(--primary);
 }
 
-/* Header */
+/* Header - Correções para mobile */
 header {
     background-color: var(--light); 
     color: var(--primary); 
-    padding: 20px 0;
+    padding: 15px 0; /* Aumentado de 10px para 15px */
     position: fixed;
     width: 100%;
     z-index: 1000;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease; /* Adiciona transição suave */
+    transition: all 0.3s ease;
+    height: auto;
+    min-height: 70px; /* Adicionando altura mínima para o cabeçalho */
 }
 
 /* Header com efeito de glassmorfismo */
 header.glass-effect {
-    background-color: rgba(255, 255, 255, 0.85); /* Fundo levemente transparente */
-    backdrop-filter: blur(8px); /* Efeito de desfoque atrás do header */
-    -webkit-backdrop-filter: blur(8px); /* Para compatibilidade com Safari */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07); /* Sombra mais suave */
+    background-color: rgba(255, 255, 255, 0.9); /* Mais opaco para melhor visualização em mobile */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .nav-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 10px;
+    padding: 0 15px;
+    width: 100%;
+    min-height: 40px; /* Garantindo altura mínima para o container */
 }
-
 .logo {
     font-size: 24px;
     font-weight: 700;
@@ -98,11 +102,15 @@ header.glass-effect {
     text-decoration: none;
     display: flex;
     align-items: center;
+    max-width: 180px; /* Valor fixo em vez de percentual */
 }
 
 .logo img {
-    max-width: 150px;
+    max-width: 100%;
+    width: auto; /* Permite que a imagem mantenha sua proporção */
     height: auto;
+    max-height: 48px; /* Aumentado para evitar distorção */
+    object-fit: contain; /* Garante que a imagem não seja distorcida */
 }
 
 .nav-menu {
@@ -111,7 +119,7 @@ header.glass-effect {
 }
 
 .nav-item {
-    margin-left: 30px;
+    margin-left: 20px; /* Reduzido para mobile */
 }
 
 .nav-link {
@@ -121,47 +129,50 @@ header.glass-effect {
     font-size: 14px;
     font-weight: 500;
     transition: color 0.3s ease;
+    white-space: nowrap; /* Impede quebra de linha nos links */
 }
 
 .nav-link:hover {
     color: var(--accent);
 }
 
-/* Mobile Menu */
+/* Mobile Menu - Melhorado */
 .hamburger {
     display: none;
     cursor: pointer;
     background: none;
     border: none;
     padding: 5px;
-    margin-left: 10px;
     z-index: 1100;
+    margin-left: auto; /* Alinha à direita */
 }
 
 .hamburger-line {
     display: block;
-    width: 30px;
+    width: 25px; /* Mais fino em mobile */
     height: 3px;
-    margin: 6px 0;
+    margin: 5px 0;
     background-color: var(--primary); 
     border-radius: 3px;
+    transition: transform 0.3s ease;
 }
 
 .side-menu {
     position: fixed;
-    left: -300px;
+    right: -300px; /* Muda para abrir da direita */
     top: 0;
-    width: 300px;
+    width: 80%; /* Percentual da largura da tela */
+    max-width: 300px;
     height: 100%;
     background-color: var(--primary);
     z-index: 1050;
-    transition: left 0.3s ease-in-out;
-    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
+    transition: right 0.3s ease-in-out; /* Muda para right */
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.3);
     overflow-y: auto;
 }
 
 .side-menu.open {
-    left: 0;
+    right: 0; /* Abre da direita */
 }
 
 .side-menu-header {
@@ -176,8 +187,9 @@ header.glass-effect {
     background: none;
     border: none;
     color: var(--light);
-    font-size: 24px;
+    font-size: 28px;
     cursor: pointer;
+    padding: 5px 10px;
 }
 
 .side-menu-nav {
@@ -194,7 +206,7 @@ header.glass-effect {
     text-decoration: none;
     font-size: 16px;
     display: block;
-    padding: 10px 0;
+    padding: 12px 0; /* Área de toque maior para mobile */
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     transition: color 0.3s ease;
 }
@@ -221,7 +233,7 @@ header.glass-effect {
     opacity: 1;
 }
 
-/* Hero Section */
+/* Hero Section - Ajustado para mobile */
 .hero {
     height: 100vh;
     display: flex;
@@ -230,6 +242,7 @@ header.glass-effect {
     text-align: center;
     position: relative;
     overflow: hidden;
+    padding-top: 60px; /* Espaço para o header fixo */
 }
 
 .hero-background {
@@ -259,7 +272,7 @@ header.glass-effect {
     height: 100%;
     opacity: 0;
     transition: opacity 1.5s ease;
-    z-index: 1; /* Prioridade sobre a imagem */
+    z-index: 1;
 }
 
 .video-container.loaded {
@@ -278,7 +291,7 @@ header.glass-effect {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.6); /* Mais escuro para legibilidade em mobile */
     z-index: -1;
 }
 
@@ -287,17 +300,18 @@ header.glass-effect {
     margin: 0 auto;
     position: relative;
     z-index: 1;
+    padding: 0 20px; /* Padding para conteúdo não tocar nas bordas */
 }
 
 .hero-title {
-    font-size: 48px;
+    font-size: 42px;
     margin-bottom: 20px;
     text-transform: uppercase;
 }
 
 .hero-subtitle {
-    font-size: 24px;
-    margin-bottom: 30px;
+    font-size: 22px;
+    margin-bottom: 25px;
 }
 
 .hero-cta {
@@ -322,7 +336,7 @@ header.glass-effect {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 25px;
-    max-width: 1600px; /* Aumentado para permitir cards mais largos */
+    max-width: 1600px;
     margin: 0 auto;
     padding: 0 20px;
     width: 100%;
@@ -344,20 +358,20 @@ header.glass-effect {
 }
 
 .card-img {
-    height: 280px; /* Aumentado para imagens maiores */
+    height: 280px;
     width: 100%;
     object-fit: cover;
 }
 
 .card-content {
-    padding: 25px; /* Maior espaçamento interno */
+    padding: 25px;
     flex-grow: 1;
     display: flex;
     flex-direction: column;
 }
 
 .card-title {
-    font-size: 32px; /* Tamanho ajustado */
+    font-size: 32px;
     margin-bottom: 15px;
     line-height: 1.2;
 }
@@ -380,7 +394,7 @@ header.glass-effect {
 
 .service-list {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 colunas em telas grandes */
+    grid-template-columns: repeat(3, 1fr);
     gap: 30px;
     max-width: 1400px;
     margin: 0 auto;
@@ -404,8 +418,8 @@ header.glass-effect {
 }
 
 .service-icon {
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     margin-bottom: 25px;
     object-fit: contain;
     display: block;
@@ -421,7 +435,7 @@ header.glass-effect {
     background-color: var(--gray);
     color: var(--light);
     border: none;
-    padding: 8px 15px;
+    padding: 10px 20px;
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s ease;
@@ -435,24 +449,26 @@ header.glass-effect {
 /* Responsividade para serviços */
 @media (max-width: 1200px) {
     .service-list {
-        grid-template-columns: repeat(2, 1fr); /* 2 colunas em telas médias */
+        grid-template-columns: repeat(2, 1fr);
         max-width: 900px;
     }
 }
 
 @media (max-width: 768px) {
     .service-list {
-        grid-template-columns: 1fr; /* 1 coluna em telas pequenas */
+        grid-template-columns: 1fr;
         max-width: 500px;
+        gap: 20px;
     }
     
     .service-item {
         min-height: 280px;
+        padding: 25px 20px;
     }
     
     .service-icon {
-        width: 80px; /* Ícones menores em telas pequenas */
-        height: 80px;
+        width: 70px;
+        height: 70px;
         margin-bottom: 15px;
     }
     
@@ -463,13 +479,13 @@ header.glass-effect {
 
 @media (max-width: 480px) {
     .service-icon {
-        width: 60px; /* Ícones ainda menores em telas muito pequenas */
+        width: 60px;
         height: 60px;
         margin-bottom: 10px;
     }
     
     .service-item {
-        padding: 20px;
+        padding: 20px 15px;
         min-height: 240px;
     }
 }
@@ -498,13 +514,20 @@ header.glass-effect {
     background-color: var(--light);
     margin: 10% auto;
     padding: 30px;
-    width: 80%;
+    width: 90%; /* Aumentado para mobile */
     max-width: 700px;
     border-radius: 8px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     position: relative;
     transform: translateY(-50px);
     transition: transform 0.3s ease;
+}
+
+@media (max-width: 768px) {
+    .modal-content {
+        padding: 20px;
+        margin: 15% auto;
+    }
 }
 
 .modal.show .modal-content {
@@ -520,6 +543,7 @@ header.glass-effect {
     color: var(--secondary);
     cursor: pointer;
     transition: color 0.3s ease;
+    padding: 5px 10px; /* Área de toque maior */
 }
 
 .close-modal:hover {
@@ -533,7 +557,7 @@ header.glass-effect {
     color: var(--primary);
 }
 
-/* Timeline */
+/* Timeline - Com animações */
 .timeline {
     padding: 80px 0;
     background-color: var(--bg-light);
@@ -714,8 +738,8 @@ header.glass-effect {
     }
     
     .member-img {
-        width: 220px;
-        height: 220px;
+        width: 180px;
+        height: 180px;
     }
 }
 
@@ -777,6 +801,12 @@ header.glass-effect {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
+@media (max-width: 768px) {
+    .contact-form {
+        padding: 20px;
+    }
+}
+
 .form-group {
     margin-bottom: 20px;
 }
@@ -814,10 +844,12 @@ footer {
     justify-content: center;
     list-style: none;
     margin: 20px 0;
+    flex-wrap: wrap; /* Permite quebra de linha em dispositivos pequenos */
+    padding: 0 10px;
 }
 
 .footer-link {
-    margin: 0 15px;
+    margin: 8px 15px;
     color: var(--light);
     text-decoration: none;
     transition: color 0.3s ease;
@@ -832,7 +864,7 @@ footer {
     font-size: 14px;
 }
 
-/* Responsive */
+/* Responsive - Ajustes específicos para mobile */
 @media screen and (max-width: 991px) {
     .nav-menu {
         display: none;
@@ -847,10 +879,12 @@ footer {
     
     .hero-title {
         font-size: 36px;
+        line-height: 1.2;
     }
     
     .hero-subtitle {
         font-size: 18px;
+        line-height: 1.4;
     }
 }
 
@@ -884,18 +918,14 @@ footer {
     .timeline-item:nth-child(even)::after {
         left: 31px;
     }
-}
-
-/* Ajustes responsivos para telas extra-grandes */
-@media (min-width: 1600px) {
-    .destinations-grid {
-        grid-template-columns: repeat(4, 1fr);
-        max-width: 1800px; /* Ainda maior para telas extra-largas */
-        gap: 20px; /* Gap reduzido em telas grandes para cards ocuparem mais espaço */
+    
+    .timeline-content {
+        padding: 15px; /* Menor padding em mobile */
     }
     
-    .card-img {
-        height: 320px; /* Ainda mais alto para telas grandes */
+    .section-title {
+        font-size: 28px;
+        margin-bottom: 30px;
     }
 }
 
@@ -924,15 +954,11 @@ footer {
 
 @media (max-width: 768px) {
     .hero-title {
-        font-size: 36px;
+        font-size: 32px;
     }
     
     .hero-subtitle {
         font-size: 18px;
-    }
-    
-    .section-title {
-        font-size: 28px;
     }
     
     /* Correções para mobile */
@@ -941,13 +967,22 @@ footer {
     }
     
     .card-title {
-        font-size: 28px;
+        font-size: 24px;
+    }
+    
+    .destinations-grid {
+        gap: 15px;
+    }
+    
+    .card-img {
+        height: 220px;
     }
 }
 
 @media (max-width: 600px) {
     .destinations-grid {
         grid-template-columns: 1fr;
+        max-width: 400px;
     }
 }
 
@@ -959,6 +994,7 @@ footer {
     
     .logo img {
         max-width: 120px;
+        max-height: 35px;
     }
     
     .contact-container {
@@ -966,15 +1002,53 @@ footer {
     }
     
     .hero-title {
-        font-size: 32px;
+        font-size: 28px;
+    }
+    
+    .hero-subtitle {
+        font-size: 16px;
     }
     
     .section-title {
         font-size: 24px;
-        margin-bottom: 30px;
+        margin-bottom: 25px;
     }
     
-    .card-title {
-        font-size: 24px;
+    /* Espaçamento reduzido em telas pequenas */
+    .destinations, .services, .timeline, .team, .contact {
+        padding: 60px 0;
+    }
+    
+    /* Ajuste para botões em mobile */
+    .btn {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+}
+
+/* Fix específico para o cabeçalho em dispositivos móveis */
+@media (max-width: 480px) {
+
+    header {
+        padding: 12px 0;
+        min-height: 60px;
+    }
+    
+    .logo {
+        max-width: 150px;
+    }
+    
+    .logo img {
+        max-height: 40px;
+    }
+    
+    .hamburger {
+        margin-left: 10px;
+        padding: 8px;
+    }
+    
+    /* Ajuste para telas muito pequenas */
+    .hero {
+        padding-top: 55px; /* Menor espaço para o header */
     }
 }
