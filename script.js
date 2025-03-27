@@ -1,10 +1,26 @@
 // Mobile menu functions
 document.addEventListener('DOMContentLoaded', function() {
+    const header = document.querySelector('header');
     const hamburger = document.getElementById('hamburger-btn');
     const sideMenu = document.getElementById('side-menu');
     const closeBtn = document.getElementById('side-menu-close');
     const overlay = document.getElementById('overlay');
     const sideMenuLinks = document.querySelectorAll('.side-menu-link');
+    
+    // Função para aplicar o efeito de glassmorfismo ao rolar
+    function handleScroll() {
+        if (window.scrollY > 50) {
+            header.classList.add('glass-effect');
+        } else {
+            header.classList.remove('glass-effect');
+        }
+    }
+    
+    // Adiciona evento de scroll
+    window.addEventListener('scroll', handleScroll);
+    
+    // Verifica a posição inicial ao carregar a página
+    handleScroll();
     
     // Função para abrir o menu lateral
     function openSideMenu() {
@@ -101,4 +117,148 @@ document.addEventListener('DOMContentLoaded', function() {
             document.addEventListener('touchstart', startVideo, {once: true});
         }
     }
+    
+    // ===== FUNÇÕES PARA OS MODAIS (ADICIONADAS) =====
+    
+    // Função para abrir modal
+    window.openModal = function(modalId) {
+        const modal = document.getElementById(modalId);
+        if (modal) {
+            modal.style.display = 'block';
+            setTimeout(() => {
+                modal.classList.add('show');
+            }, 10);
+            document.body.style.overflow = 'hidden'; // Impede rolagem do body
+        }
+    }
+    
+    // Função para fechar modal
+    window.closeModal = function(modalId) {
+        const modal = document.getElementById(modalId);
+        if (modal) {
+            modal.classList.remove('show');
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 300); // Aguarda a transição terminar
+            document.body.style.overflow = 'auto'; // Permite rolagem do body novamente
+        }
+    }
+    
+    // Fechar modal ao clicar fora do conteúdo
+    document.addEventListener('click', function(event) {
+        if (event.target.classList.contains('modal')) {
+            const modalId = event.target.id;
+            closeModal(modalId);
+        }
+    });
+    
+    // Fechar modal ao pressionar ESC
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+            const openModals = document.querySelectorAll('.modal.show');
+            openModals.forEach(modal => {
+                closeModal(modal.id);
+            });
+        }
+    });
 });
+
+// Adicione este código ao seu script.js
+
+// Implementação de scroll suave com offset para os links do menu
+document.addEventListener('DOMContentLoaded', function() {
+
+
+    // Seleciona todos os elementos com a classe "logo"
+    const logoLinks = document.querySelectorAll('.logo');
+    
+    // Adiciona evento de clique a todos os logos
+    logoLinks.forEach(logo => {
+        logo.addEventListener('click', function(e) {
+            // Previne o comportamento padrão de navegação
+            e.preventDefault();
+            
+            // Rola suavemente para o topo
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    });
+
+    // Seleciona todos os links que começam com # (links de navegação interna)
+    const navLinks = document.querySelectorAll('a[href^="#"]');
+    
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const targetId = this.getAttribute('href');
+            
+            // Se o link não é apenas "#" (link para o topo)
+            if (targetId !== '#') {
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    // Obtém a posição do elemento alvo
+                    const targetPosition = targetElement.getBoundingClientRect().top;
+                    // Posição atual da página
+                    const startPosition = window.pageYOffset;
+                    // Offset para não deixar o conteúdo muito colado ao topo
+                    const offset = 80; // Ajuste este valor conforme necessário
+                    
+                    // Calcular a posição final com o offset
+                    const targetOffsetPosition = startPosition + targetPosition - offset;
+                    
+                    window.scrollTo({
+                        top: targetOffsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            }
+        });
+    });
+});
+
+// Função para verificar se um elemento está visível na viewport
+function isElementInViewport(el) {
+    const rect = el.getBoundingClientRect();
+    return (
+        rect.top <= (window.innerHeight || document.documentElement.clientHeight) * 0.8 &&
+        rect.bottom >= 0
+    );
+}
+
+// Função para adicionar animações aos itens da timeline
+function animateTimelineItems() {
+    const timelineSection = document.querySelector('.timeline');
+    const timelineContainer = document.querySelector('.timeline-container');
+    const timelineItems = document.querySelectorAll('.timeline-item');
+    
+    // Se a seção de timeline estiver visível
+    if (isElementInViewport(timelineSection)) {
+        // Anima a linha central primeiro
+        timelineContainer.classList.add('animate');
+        
+        // Depois anima cada item com um atraso
+        timelineItems.forEach((item, index) => {
+            // Adiciona um atraso crescente para cada item
+            setTimeout(() => {
+                item.classList.add('animate');
+            }, 500 + (300 * index)); // 500ms para a linha central + 300ms de atraso entre cada item
+        });
+        
+        // Remove o listener depois que a animação for aplicada
+        window.removeEventListener('scroll', animateTimelineItems);
+    }
+}
+
+// Inicializa quando o DOM estiver carregado
+document.addEventListener('DOMContentLoaded', function() {
+    // Adiciona o evento de scroll para verificar quando a timeline está visível
+    window.addEventListener('scroll', animateTimelineItems);
+    
+    // Verifica também ao carregar a página
+    animateTimelineItems();
+});
+
