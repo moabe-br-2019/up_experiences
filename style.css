@@ -221,7 +221,7 @@ header.glass-effect {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.3);
     z-index: 1040;
     display: none;
     opacity: 0;
@@ -291,7 +291,7 @@ header.glass-effect {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.6); /* Mais escuro para legibilidade em mobile */
+    background: rgba(0, 0, 0, 0.3); /* Mais escuro para legibilidade em mobile */
     z-index: -1;
 }
 
