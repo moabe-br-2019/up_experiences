@@ -394,7 +394,7 @@ header.glass-effect {
 
 .service-list {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 30px;
     max-width: 1400px;
     margin: 0 auto;
@@ -698,7 +698,7 @@ header.glass-effect {
 }
 
 .member-title {
-    font-size: 18px;
+    font-size: 14px;
     color: var(--accent);
     margin-bottom: 15px;
     font-weight: 500;
