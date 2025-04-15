@@ -163,8 +163,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Adicione este código ao seu script.js
-
 // Implementação de scroll suave com offset para os links do menu
 document.addEventListener('DOMContentLoaded', function() {
 
@@ -262,3 +260,91 @@ document.addEventListener('DOMContentLoaded', function() {
     animateTimelineItems();
 });
 
+
+// Adicionar o código para o formulário
+document.addEventListener('DOMContentLoaded', function() {
+    // Seleciona o formulário de contato
+    const contactForm = document.querySelector('.contact-form form');
+    
+    // Corrige o problema com o select de destino
+    const destinationSelect = document.getElementById('destination');
+    if (destinationSelect) {
+        // Atualiza as opções do select para garantir valores corretos
+        destinationSelect.innerHTML = `
+            <option value="">Selecione...</option>
+            <option value="Rio de Janeiro">Rio de Janeiro</option>
+            <option value="Doha">Doha</option>
+            <option value="Abu Dhabi">Abu Dhabi</option>
+            <option value="Dubai">Dubai</option>
+        `;
+    }
+    
+    // Adiciona o evento de envio do formulário
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            // Previne o comportamento padrão de envio do formulário
+            e.preventDefault();
+            
+            // Captura os dados do formulário
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const destination = document.getElementById('destination').value;
+            const message = document.getElementById('message').value;
+            
+            // Validação básica dos dados
+            if (!name || !email || !message) {
+                alert('Por favor, preencha todos os campos obrigatórios.');
+                return;
+            }
+            
+            // URL do Google Apps Script
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbxbnjao4_3L1OZMHNUYQGBzcsutzoC3OM_QYlgFeXOfo1qtnhJTw9HI8gIFA-5ckKYKxw/exec';
+            
+            // Prepara os dados para envio
+            const formData = new FormData();
+            formData.append('nome', name);
+            formData.append('email', email);
+            formData.append('destino', destination);
+            formData.append('mensagem', message);
+            
+            // Mostra indicador de carregamento ou mensagem
+            const submitButton = contactForm.querySelector('button[type="submit"]');
+            const originalButtonText = submitButton.innerHTML;
+            submitButton.innerHTML = 'Enviando...';
+            submitButton.disabled = true;
+            
+            // Para debug - mostra no console os valores sendo enviados
+            console.log('Enviando dados:', {
+                nome: name,
+                email: email,
+                destino: destination,
+                mensagem: message
+            });
+            
+            // Envia os dados para o Google Apps Script
+            fetch(scriptURL, {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Mostra mensagem de sucesso
+                    contactForm.reset(); // Limpa o formulário
+                    alert('Mensagem enviada com sucesso! Entraremos em contato em breve.');
+                } else {
+                    // Mostra mensagem de erro
+                    alert('Ocorreu um erro ao enviar sua mensagem. Por favor, tente novamente mais tarde.');
+                }
+            })
+            .catch(error => {
+                console.error('Erro:', error);
+                alert('Ocorreu um erro ao enviar sua mensagem. Por favor, tente novamente mais tarde.');
+            })
+            .finally(() => {
+                // Restaura o botão ao estado original
+                submitButton.innerHTML = originalButtonText;
+                submitButton.disabled = false;
+            });
+        });
+    }
+});
