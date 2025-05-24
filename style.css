@@ -20,12 +20,14 @@ body {
     color: var(--text);
     line-height: 1.6;
     overflow-x: hidden; /* Previne rolagem horizontal */
+    font-size: 13px;
 }
 
 h1, h2, h3, h4 {
     font-weight: 400;
     margin-bottom: 1rem;
 }
+
 
 p {
     margin-bottom: 1rem;

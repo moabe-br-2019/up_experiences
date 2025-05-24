@@ -1,0 +1,1088 @@
+/* Reset default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --green: #78D402;
+    --blue: #3F77DA;
+    --red: #F84856;
+    --purple: #7D2AE8;
+    --grey: #40576D;
+    --secondary-color: #6c757d;
+    --background-color: #f8f9fa;
+    --text-color: #343a40;
+}
+
+/* Basic body setup */
+body {
+    font-family: 'Orkney', sans-serif;
+    line-height: 1.6;
+    font-size: 13px;
+}
+
+/* Hero section */
+.hero {
+    height: 100vh;
+    width: 100%;
+    background: url('imgs/uri_ifs___M_8hibapdCrFKT1P65IDJFSDLzLQCC-475i0oVNXnX-DA.webp') no-repeat center center/cover #f5f5f5;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Overlay para melhorar legibilidade do texto */
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 50%;
+    bottom: 0;
+    background: linear-gradient(90deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.7) 70%, transparent 100%);
+    z-index: 1;
+}
+
+.content-wrapper {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding: 0 40px;
+}
+
+.left-column {
+    flex: 1;
+    max-width: 600px;
+    z-index: 2;
+    text-align: left;
+    padding: 0 60px 0 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.right-column {
+    flex: 1;
+    height: 100%;
+    position: relative;
+}
+
+.logo {
+    width: 300px;
+    height: auto;
+    margin-bottom: 40px;
+}
+
+.hero h1 {
+    font-size: 3.8rem;
+    font-weight: bold;
+    line-height: 1.05;
+    color: #000;
+    margin-bottom: 30px;
+    font-family: 'Orkney', sans-serif;
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    color: #333;
+    line-height: 1.4;
+    margin-bottom: 50px;
+    font-weight: 400;
+}
+
+.location-text {
+    margin-top: 30px;
+}
+
+.cursive-text {
+    font-size: 2.8rem;
+    color: var(--green);
+    font-family: 'Dancing Script', cursive;
+    font-weight: 500;
+    line-height: 1.2;
+    display: inline-block;
+}
+
+/* Nova seção de experiências */
+.experiences-section {
+    min-height: 100vh;
+    background: 
+        linear-gradient(135deg, rgba(120, 212, 2, 0.85) 0%, rgba(74, 124, 89, 0.85) 100%),
+        url('imgs/ipanema-1.webp') no-repeat center center/cover;
+    padding: 80px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.experiences-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    min-height: 80vh;
+    padding: 0 40px;
+    gap: 60px;
+    position: relative;
+    z-index: 1;
+}
+
+.experiences-left {
+    flex: 1;
+    position: relative;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.house-image {
+    width: 80%;
+    max-width: 500px;
+    height: 400px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease;
+}
+
+.house-image:hover {
+    transform: translateY(-10px);
+}
+
+.house-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.experiences-right {
+    flex: 1;
+    color: #2d5016;
+    padding-left: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+}
+
+.experiences-text h2 {
+    font-size: 1.4rem;
+    line-height: 1.6;
+    font-weight: 400;
+    margin-bottom: 60px;
+    color: #2d5016;
+    font-family: 'Orkney', sans-serif;
+}
+
+.up-logo-small {
+    align-self: flex-end;
+    margin-top: auto;
+}
+
+.logo-small {
+    width: 80px;
+    height: auto;
+    opacity: 0.8;
+    filter: brightness(0.3);
+}
+
+/* Responsive design */
+@media (max-width: 1024px) {
+    .hero h1 {
+        font-size: 3rem;
+    }
+    
+    .cursive-text {
+        font-size: 2.2rem;
+    }
+    
+    .logo {
+        width: 250px;
+    }
+    
+    .experiences-container {
+        gap: 40px;
+        padding: 0 30px;
+    }
+    
+    .experiences-right {
+        padding-left: 20px;
+    }
+    
+    .experiences-text h2 {
+        font-size: 1.2rem;
+    }
+    
+    .house-image {
+        width: 90%;
+        height: 350px;
+    }
+}
+
+@media (max-width: 768px) {
+    .content-wrapper {
+        flex-direction: column;
+        text-align: center;
+        padding: 0 20px;
+    }
+    
+    .left-column {
+        padding: 20px;
+        max-width: 100%;
+        justify-content: flex-start;
+    }
+    
+    .hero::before {
+        right: 0;
+        background: rgba(255,255,255,0.8);
+    }
+    
+    .hero h1 {
+        font-size: 2.4rem;
+    }
+    
+    .cursive-text {
+        font-size: 1.8rem;
+    }
+    
+    .logo {
+        width: 200px;
+        margin-bottom: 30px;
+    }
+    
+    .subtitle {
+        font-size: 1rem;
+        margin-bottom: 30px;
+    }
+    
+    .experiences-section {
+        padding: 60px 0;
+    }
+    
+    .experiences-container {
+        flex-direction: column;
+        gap: 40px;
+        padding: 0 20px;
+        text-align: center;
+    }
+    
+    .experiences-left {
+        height: 350px;
+        width: 100%;
+    }
+    
+    .house-image {
+        width: 100%;
+        max-width: 400px;
+        height: 300px;
+    }
+    
+    .experiences-right {
+        padding-left: 0;
+    }
+    
+    .experiences-text h2 {
+        font-size: 1.1rem;
+        margin-bottom: 40px;
+    }
+    
+    .up-logo-small {
+        align-self: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero h1 {
+        font-size: 1.9rem;
+    }
+    
+    .cursive-text {
+        font-size: 1.5rem;
+    }
+    
+    .logo {
+        width: 180px;
+    }
+    
+    .experiences-left {
+        height: 300px;
+    }
+    
+    .house-image {
+        height: 250px;
+    }
+    
+    .experiences-text h2 {
+        font-size: 1rem;
+        line-height: 1.5;
+    }
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 15px 30px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: #0056b3;
+}
+
+/* Seção de Facilities */
+.facilities-section {
+    padding: 100px 0;
+    background: #f8f9fa;
+    position: relative;
+}
+
+.facilities-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+.facilities-header {
+    text-align: center;
+    margin-bottom: 80px;
+}
+
+.facilities-header h2 {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+    font-family: 'Orkney', sans-serif;
+}
+
+.facilities-subtitle {
+    font-size: 1.2rem;
+    color: #666;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.facilities-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    margin-top: 60px;
+}
+
+.facility-card {
+    background: white;
+    padding: 40px 30px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    border: 1px solid #f0f0f0;
+}
+
+.facility-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    border-color: var(--green);
+}
+
+.facility-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 30px;
+    background: linear-gradient(135deg, var(--green), #5cb85c);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+}
+
+.facility-card:hover .facility-icon {
+    transform: scale(1.1);
+}
+
+.facility-icon svg {
+    width: 40px;
+    height: 40px;
+    color: white;
+}
+
+.facility-card h3 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 15px;
+    font-family: 'Orkney', sans-serif;
+}
+
+.facility-card p {
+    font-size: 1rem;
+    color: #666;
+    line-height: 1.6;
+}
+
+/* Responsive para facilities */
+@media (max-width: 1024px) {
+    .facilities-header h2 {
+        font-size: 2.5rem;
+    }
+    
+    .facilities-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 30px;
+    }
+    
+    .facility-card {
+        padding: 35px 25px;
+    }
+}
+
+@media (max-width: 768px) {
+    .facilities-section {
+        padding: 80px 0;
+    }
+    
+    .facilities-container {
+        padding: 0 20px;
+    }
+    
+    .facilities-header {
+        margin-bottom: 60px;
+    }
+    
+    .facilities-header h2 {
+        font-size: 2rem;
+    }
+    
+    .facilities-subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .facilities-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+        margin-top: 40px;
+    }
+    
+    .facility-card {
+        padding: 30px 20px;
+    }
+    
+    .facility-icon {
+        width: 70px;
+        height: 70px;
+        margin-bottom: 25px;
+    }
+    
+    .facility-icon svg {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .facility-card h3 {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .facilities-header h2 {
+        font-size: 1.8rem;
+    }
+    
+    .facilities-subtitle {
+        font-size: 1rem;
+    }
+    
+    .facility-card {
+        padding: 25px 15px;
+    }
+    
+    .facility-icon {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .facility-icon svg {
+        width: 30px;
+        height: 30px;
+    }
+}
+
+/* Seção de Destinos */
+.destinations-section {
+    padding: 100px 0;
+    background: white;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Fundo decorativo */
+.destinations-section::before {
+    content: '';
+    position: absolute;
+    top: -10%;
+    right: -10%;
+    width: 80%;
+    height: 120%;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="%23f0f0f0" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>') repeat;
+    opacity: 0.3;
+    z-index: 0;
+}
+
+.destinations-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+    position: relative;
+    z-index: 1;
+}
+
+.destinations-header {
+    text-align: center;
+    margin-bottom: 80px;
+}
+
+.destinations-header h2 {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+    font-family: 'Orkney', sans-serif;
+}
+
+.destinations-subtitle {
+    font-size: 1.2rem;
+    color: #666;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.destinations-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    margin-bottom: 80px;
+}
+
+.destination-card {
+    background: var(--green);
+    padding: 40px 30px;
+    border-radius: 25px;
+    text-align: center;
+    color: white;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.destination-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, transparent 0%, rgba(255,255,255,0.1) 100%);
+    z-index: 0;
+}
+
+.destination-card > * {
+    position: relative;
+    z-index: 1;
+}
+
+.destination-card:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 25px 50px rgba(120, 212, 2, 0.3);
+}
+
+.destination-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 30px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+}
+
+.destination-card:hover .destination-icon {
+    transform: scale(1.1);
+}
+
+.destination-icon svg {
+    width: 40px;
+    height: 40px;
+    color: white;
+}
+
+.destination-card h3 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    font-family: 'Orkney', sans-serif;
+}
+
+.destination-card p {
+    font-size: 1rem;
+    line-height: 1.6;
+    opacity: 0.95;
+}
+
+.destinations-cta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 60px;
+}
+
+.cta-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.btn-primary, .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 15px;
+    padding: 18px 30px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    border: 2px solid var(--green);
+}
+
+.btn-primary {
+    background: var(--green);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #5cb85c;
+    transform: translateX(5px);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--green);
+}
+
+.btn-secondary:hover {
+    background: var(--green);
+    color: white;
+    transform: translateX(5px);
+}
+
+.btn-primary svg, .btn-secondary svg {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.3s ease;
+}
+
+.btn-primary:hover svg, .btn-secondary:hover svg {
+    transform: translateX(3px);
+}
+
+.portfolio-cta {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    max-width: 400px;
+}
+
+.portfolio-cta svg {
+    width: 30px;
+    height: 30px;
+    color: var(--green);
+    flex-shrink: 0;
+}
+
+.portfolio-cta p {
+    font-size: 1.1rem;
+    color: #333;
+    line-height: 1.5;
+}
+
+.portfolio-cta strong {
+    color: var(--green);
+}
+
+/* Responsive para destinos */
+@media (max-width: 1024px) {
+    .destinations-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+    }
+    
+    .destinations-cta {
+        flex-direction: column;
+        gap: 40px;
+        text-align: center;
+    }
+    
+    .portfolio-cta {
+        max-width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .destinations-section {
+        padding: 80px 0;
+    }
+    
+    .destinations-container {
+        padding: 0 20px;
+    }
+    
+    .destinations-header h2 {
+        font-size: 2.2rem;
+    }
+    
+    .destinations-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+        margin-bottom: 60px;
+    }
+    
+    .destination-card {
+        padding: 35px 25px;
+    }
+    
+    .destination-card h3 {
+        font-size: 1.5rem;
+    }
+    
+    .destinations-cta {
+        gap: 30px;
+    }
+    
+    .cta-buttons {
+        width: 100%;
+    }
+    
+    .btn-primary, .btn-secondary {
+        justify-content: center;
+        padding: 16px 25px;
+    }
+}
+
+@media (max-width: 480px) {
+    .destinations-header h2 {
+        font-size: 1.8rem;
+    }
+    
+    .destinations-subtitle {
+        font-size: 1rem;
+    }
+    
+    .destination-card {
+        padding: 30px 20px;
+    }
+    
+    .destination-icon {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .destination-icon svg {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .destination-card h3 {
+        font-size: 1.3rem;
+    }
+    
+    .portfolio-cta {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .portfolio-cta p {
+        font-size: 1rem;
+        text-align: center;
+    }
+}
+
+/* Seção de Contato */
+.contact-section {
+    min-height: 100vh;
+    background: #1a1a1a;
+    display: flex;
+    align-items: center;
+    padding: 0;
+}
+
+.contact-container {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    min-height: 100vh;
+}
+
+.contact-left {
+    flex: 1;
+    position: relative;
+}
+
+.contact-image {
+    width: 100%;
+    height: 100%;
+    background: url('imgs/f5ceda9d89a0577c9b8d43b98012d81c.jpg') no-repeat center center/cover;
+    position: relative;
+}
+
+.contact-image::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.1) 100%);
+}
+
+.contact-right {
+    flex: 1;
+    background: #1a1a1a;
+    padding: 80px 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: white;
+}
+
+.contact-content {
+    max-width: 500px;
+}
+
+.contact-text h2 {
+    font-size: 1.8rem;
+    line-height: 1.4;
+    color: var(--green);
+    margin-bottom: 50px;
+    font-family: 'Orkney', sans-serif;
+    font-weight: 400;
+}
+
+.contact-info {
+    margin-bottom: 60px;
+}
+
+.phone-numbers {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.phone-link {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: white;
+    text-decoration: none;
+    font-size: 1.3rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    padding: 10px 0;
+}
+
+.phone-link:hover {
+    color: var(--green);
+    transform: translateX(10px);
+}
+
+.phone-link svg {
+    width: 24px;
+    height: 24px;
+    color: var(--green);
+}
+
+.brand-section {
+    border-top: 1px solid #333;
+    padding-top: 40px;
+}
+
+.brand-logo {
+    margin-bottom: 20px;
+}
+
+.contact-logo {
+    width: 150px;
+    height: auto;
+    filter: brightness(0) invert(1);
+}
+
+.brand-tagline {
+    font-size: 1rem;
+    color: #ccc;
+    line-height: 1.5;
+    margin-bottom: 40px;
+}
+
+.contact-details {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.email a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+}
+
+.email a:hover {
+    color: var(--green);
+}
+
+.social-media {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+}
+
+.social-link {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.social-link:hover {
+    background: var(--green);
+    transform: scale(1.1);
+}
+
+.social-link svg {
+    width: 20px;
+    height: 20px;
+}
+
+.social-handle {
+    color: #ccc;
+    font-size: 1rem;
+}
+
+/* Responsive para contato */
+@media (max-width: 1024px) {
+    .contact-right {
+        padding: 60px 40px;
+    }
+    
+    .contact-text h2 {
+        font-size: 1.6rem;
+    }
+    
+    .phone-link {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .contact-section {
+        min-height: auto;
+    }
+    
+    .contact-container {
+        flex-direction: column;
+        min-height: auto;
+    }
+    
+    .contact-left {
+        height: 300px;
+    }
+    
+    .contact-right {
+        padding: 50px 30px;
+    }
+    
+    .contact-text h2 {
+        font-size: 1.4rem;
+        margin-bottom: 40px;
+    }
+    
+    .contact-info {
+        margin-bottom: 50px;
+    }
+    
+    .phone-numbers {
+        gap: 15px;
+    }
+    
+    .phone-link {
+        font-size: 1.1rem;
+    }
+    
+    .contact-details {
+        gap: 25px;
+    }
+    
+    .social-media {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .contact-left {
+        height: 250px;
+    }
+    
+    .contact-right {
+        padding: 40px 20px;
+    }
+    
+    .contact-text h2 {
+        font-size: 1.2rem;
+        line-height: 1.3;
+    }
+    
+    .phone-link {
+        font-size: 1rem;
+    }
+    
+    .contact-logo {
+        width: 120px;
+    }
+    
+    .brand-tagline {
+        font-size: 0.9rem;
+    }
+    
+    .email a {
+        font-size: 1rem;
+    }
+}
