@@ -109,15 +109,15 @@ header.glass-effect {
     text-decoration: none;
     display: flex;
     align-items: center;
-    max-width: 180px; /* Valor fixo em vez de percentual */
+    max-width: 120px; /* Reduzido de 180px para 120px */
 }
 
 .logo img {
     max-width: 100%;
-    width: auto; /* Permite que a imagem mantenha sua proporção */
+    width: auto;
     height: auto;
-    max-height: 48px; /* Aumentado para evitar distorção */
-    object-fit: contain; /* Garante que a imagem não seja distorcida */
+    max-height: 36px; /* Reduzido de 48px para 36px */
+    object-fit: contain;
 }
 
 .nav-menu {
@@ -770,13 +770,16 @@ header.glass-effect {
 }
 
 .contact-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    display: flex;
+    justify-content: space-between;
     gap: 40px;
+    align-items: flex-start; /* Alterado de center para flex-start */
 }
 
 .contact-info {
-    margin-bottom: 30px;
+    flex: 0 0 300px; /* Largura fixa para a coluna de informações */
+    position: sticky; /* Mantém a coluna fixa durante a rolagem */
+    top: 100px; /* Espaço do topo quando fixo */
 }
 
 .contact-method {
@@ -815,6 +818,8 @@ header.glass-effect {
 }
 
 .contact-form {
+    flex: 1; /* Ocupa o espaço restante */
+    max-width: 600px; /* Largura máxima para o formulário */
     background-color: var(--light);
     padding: 30px;
     border-radius: 8px;
@@ -822,8 +827,18 @@ header.glass-effect {
 }
 
 @media (max-width: 768px) {
+    .contact-container {
+        flex-direction: column;
+    }
+    
+    .contact-info {
+        flex: none;
+        width: 100%;
+        position: static;
+    }
+    
     .contact-form {
-        padding: 20px;
+        max-width: 100%;
     }
 }
 

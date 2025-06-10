@@ -4,7 +4,7 @@
     
     // Configurações
     const CONFIG = {
-        phoneNumber: '5511999999999', // Substitua pelo seu número do WhatsApp (com código do país)
+        phoneNumber: '5521987838986', // Substitua pelo seu número do WhatsApp (com código do país)
         welcomeMessage: 'Olá! 👋 Como posso ajudá-lo hoje?',
         notificationText: 'Nova mensagem!',
         placeholder: 'Digite sua mensagem...',
