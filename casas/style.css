@@ -7,6 +7,7 @@
 
 :root {
     --green: #78D402;
+    --light-green: #beec84;
     --blue: #3F77DA;
     --red: #F84856;
     --purple: #7D2AE8;
@@ -594,7 +595,7 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg, transparent 0%, rgba(255,255,255,0.1) 100%);
+    background: var(--light-green);
     z-index: 0;
 }
 
