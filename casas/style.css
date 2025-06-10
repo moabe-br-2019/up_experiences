@@ -575,7 +575,7 @@ body {
     gap: 40px;
     margin-bottom: 80px;
 }
-
+/*destinos*/
 .destination-card {
     background: var(--green);
     padding: 40px 30px;
