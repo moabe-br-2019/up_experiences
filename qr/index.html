@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de QR Code</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-gray-100 via-slate-200 to-gray-300 flex items-center justify-center">
+    <div class="container max-w-lg mx-auto px-4 py-12">
+        <div class="w-full">
+            <!-- Main Card -->
+            <div class="bg-white border border-gray-200 rounded-2xl shadow-xl p-8 mb-8 transition-all">
+                <!-- Input Section -->
+                <div class="mb-8">
+                    <label for="urlInput" class="block text-gray-700 text-base font-medium mb-2">
+                        Digite a URL:
+                    </label>
+                    <div class="flex gap-2">
+                        <input 
+                            type="url" 
+                            id="urlInput" 
+                            placeholder="https://exemplo.com"
+                            class="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none text-base bg-gray-50 transition placeholder-gray-400"
+                        >
+                        <button 
+                            id="generateBtn"
+                            class="bg-gray-900 hover:bg-gray-800 focus:bg-gray-700 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-200 shadow-sm focus:ring-2 focus:ring-blue-400 focus:outline-none border border-gray-900"
+                        >
+                            Gerar QR
+                        </button>
+                    </div>
+                </div>
+
+                <!-- QR Code Display -->
+                <div id="qrContainer" class="text-center hidden">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4">Seu QR Code:</h3>
+                    <div class="bg-gray-50 border border-gray-200 rounded-lg p-6 mb-4 flex items-center justify-center min-h-[320px]">
+                        <div id="qrCanvas" class="mx-auto"></div>
+                    </div>
+                    <div class="flex gap-2 justify-center">
+                        <button 
+                            id="downloadBtn"
+                            class="bg-blue-600 hover:bg-blue-700 focus:bg-blue-800 text-white px-5 py-3 rounded-lg font-semibold transition-all duration-200 shadow-sm focus:ring-2 focus:ring-blue-400 focus:outline-none border border-blue-700"
+                        >
+                            📥 Baixar PNG
+                        </button>
+                        <button 
+                            id="clearBtn"
+                            class="bg-white hover:bg-gray-100 focus:bg-gray-200 text-gray-700 px-5 py-3 rounded-lg font-semibold transition-all duration-200 border border-gray-300 shadow-sm focus:ring-2 focus:ring-gray-400 focus:outline-none"
+                        >
+                            🗑️ Limpar
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Error Message -->
+                <div id="errorMessage" class="hidden bg-red-50 border border-red-300 text-red-700 px-4 py-3 rounded-lg mt-4 text-sm">
+                    <strong>Erro:</strong> <span id="errorText"></span>
+                </div>
+            </div>
+        
+        </div>
+    </div>
+
+    <script>
+        let currentQRData = null;
+        let qrCodeInstance = null;
+
+        // Aguardar o DOM estar completamente carregado
+        document.addEventListener('DOMContentLoaded', function() {
+            // Adicionar event listeners
+            document.getElementById('generateBtn').addEventListener('click', generateQR);
+            document.getElementById('downloadBtn').addEventListener('click', downloadQR);
+            document.getElementById('clearBtn').addEventListener('click', clearQR);
+            
+            // Allow Enter key to generate QR
+            document.getElementById('urlInput').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    generateQR();
+                }
+            });
+            
+            // Auto-fix URLs without protocol
+            document.getElementById('urlInput').addEventListener('blur', function() {
+                let url = this.value.trim();
+                if (url && !url.match(/^https?:\/\//)) {
+                    this.value = 'https://' + url;
+                }
+            });
+        });
+
+        function generateQR() {
+            const urlInput = document.getElementById('urlInput');
+            const qrContainer = document.getElementById('qrContainer');
+            const errorMessage = document.getElementById('errorMessage');
+            const qrCanvas = document.getElementById('qrCanvas');
+            
+            const url = urlInput.value.trim();
+            
+            // Hide previous error
+            errorMessage.classList.add('hidden');
+            
+            if (!url) {
+                showError('Por favor, digite uma URL');
+                return;
+            }
+            
+            // Normalize URL
+            let normalizedUrl = url;
+            if (!url.match(/^https?:\/\//)) {
+                normalizedUrl = 'https://' + url;
+            }
+            
+            // Basic URL validation
+            if (!isValidURL(normalizedUrl)) {
+                showError('Por favor, digite uma URL válida (ex: exemplo.com ou https://exemplo.com)');
+                return;
+            }
+            
+            // Show loading state
+            const generateBtn = document.getElementById('generateBtn');
+            const originalText = generateBtn.textContent;
+            generateBtn.textContent = 'Gerando...';
+            generateBtn.disabled = true;
+            
+            // Limpa o canvas antes de gerar um novo QR
+            clearCanvas(qrCanvas);
+            // Remove QRCode anterior se existir
+            if (qrCodeInstance) {
+                qrCodeInstance.clear();
+                qrCodeInstance = null;
+            }
+            // Cria novo QRCode
+            qrCodeInstance = new QRCode(qrCanvas, {
+                text: normalizedUrl,
+                width: 300,
+                height: 300,
+                colorDark: "#1f2937",
+                colorLight: "#ffffff",
+                correctLevel: QRCode.CorrectLevel.M
+            });
+            currentQRData = normalizedUrl;
+            qrContainer.classList.remove('hidden');
+            // Smooth scroll to QR code
+            qrContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            // Reset button state
+            generateBtn.textContent = originalText;
+            generateBtn.disabled = false;
+        }
+        
+        function downloadQR() {
+            if (!currentQRData) return;
+            
+            try {
+                // QRCodeJS gera uma tag <img> dentro do elemento alvo
+                const qrCanvas = document.getElementById('qrCanvas');
+                let img = qrCanvas.querySelector('img');
+                if (!img) {
+                    // Se não for <img>, pode ser <canvas>
+                    img = qrCanvas.querySelector('canvas');
+                }
+                if (img) {
+                    const link = document.createElement('a');
+                    link.download = 'qrcode.png';
+                    link.href = img.src ? img.src : img.toDataURL('image/png');
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                } else {
+                    showError('QR Code não encontrado para download.');
+                }
+            } catch (error) {
+                console.error('Download error:', error);
+                showError('Erro ao baixar o QR Code. Tente novamente.');
+            }
+        }
+        
+        function clearQR() {
+            document.getElementById('qrContainer').classList.add('hidden');
+            document.getElementById('urlInput').value = '';
+            document.getElementById('errorMessage').classList.add('hidden');
+            currentQRData = null;
+            // Limpa o canvas
+            const qrCanvas = document.getElementById('qrCanvas');
+            clearCanvas(qrCanvas);
+            if (qrCodeInstance) {
+                qrCodeInstance.clear();
+                qrCodeInstance = null;
+            }
+        }
+        
+        function clearCanvas(element) {
+            // Remove todos os filhos (img/canvas) do elemento
+            while (element.firstChild) {
+                element.removeChild(element.firstChild);
+            }
+        }
+        function showError(message) {
+            const errorMessage = document.getElementById('errorMessage');
+            const errorText = document.getElementById('errorText');
+            errorText.textContent = message;
+            errorMessage.classList.remove('hidden');
+        }
+        
+        function isValidURL(string) {
+            try {
+                const url = new URL(string);
+                return url.protocol === 'http:' || url.protocol === 'https:';
+            } catch (_) {
+                return false;
+            }
+        }
+    </script>
+</body>
+</html>

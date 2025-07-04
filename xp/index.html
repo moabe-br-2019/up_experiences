@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UP Experiences - Experiências Inesquecíveis no Rio de Janeiro</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.cdnfonts.com/css/orkney?styles=21467,21465,21466,21464" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-background"></div>
+        <div class="hero-content flex flex-col items-center">
+            <div class="hero-logo">
+                <img src="imgs/logo.png" alt="UP Experiences Logo" class="mx-auto">
+            </div>
+            <h1 id="hero-title" class="hero-title">Experiências Inesquecíveis no Rio de Janeiro</h1>
+            <a href="#tours" id="hero-cta" class="hero-cta">Conheça nossos tours</a>
+        </div>
+    </section>
+    <div id="tours">
+        <div class="container mx-auto px-4 py-8">
+            <!-- Menu de idioma -->
+            <div class="flex justify-end mb-6">
+                <select id="langSelect" class="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-200">
+                    <option value="pt-br">🇧🇷 <span id="langPt">Português</span></option>
+                    <option value="en-us">🇺🇸 <span id="langEn">English</span></option>
+                </select>
+            </div>
+            <!-- Container dos dados dinâmicos -->
+            <div id="dynamicData" class="grid gap-8"></div>
+        </div>
+    </div>
+    <script type="module" src="main.js"></script>
+</body>
+</html>
