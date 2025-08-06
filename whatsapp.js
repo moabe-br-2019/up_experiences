@@ -3,7 +3,7 @@
     function criarBotaoWhatsApp() {
         // Número de telefone para o WhatsApp (substitua pelo seu)
         const numeroWhatsApp = "5521987838986"; // Substitua pelo seu número
-        const mensagem = "Olá! Gostaria de mais informações sobre a Up experiences"; // Mensagem opcional
+        const mensagem = "Olá! Gostaria de mais informações sobre a Up Experiences"; // Mensagem opcional
         
         // Criar o elemento botão
         const botao = document.createElement('a');
